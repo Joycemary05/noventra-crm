@@ -1,0 +1,1147 @@
+
+
+{% extends "leads/base.html" %}
+
+
+{% block title %}
+Dashboard | Noventra CRM
+{% endblock %}
+
+
+
+{% block extra_css %}
+
+<style>
+
+/* =====================================
+   NOVENTRA CRM - DASHBOARD UI
+   PREMIUM SAAS DESIGN
+===================================== */
+
+
+.dashboard{
+
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+
+}
+
+
+/* HERO */
+
+.hero{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+
+    padding:35px;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(124,58,237,0.18),
+        rgba(196,181,253,0.35)
+    );
+
+    backdrop-filter:blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,0.5);
+
+    animation:
+    fadeUp .6s ease;
+
+}
+
+
+
+.hero h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#24104f;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.hero p{
+
+    color:#6b6480;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+.add-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border-radius:16px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #a855f7
+    );
+
+
+    box-shadow:
+
+    0 15px 35px rgba(124,58,237,.35);
+
+
+    transition:.35s;
+
+}
+
+
+
+.add-btn:hover{
+
+    transform:
+
+    translateY(-5px);
+
+}
+
+
+
+/* STAT CARDS */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
+    gap:25px;
+
+}
+
+
+
+.stat-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:25px;
+
+    border-radius:28px;
+
+
+    background:
+
+    rgba(255,255,255,.75);
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.5);
+
+
+    box-shadow:
+
+    0 20px 45px rgba(0,0,0,.08);
+
+
+    transition:.4s;
+
+
+    animation:
+
+    fadeUp .7s ease;
+
+}
+
+
+
+/* Floating corner circle */
+
+.stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+
+    width:130px;
+
+    height:130px;
+
+
+    right:-45px;
+
+    top:-45px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(168,85,247,.45),
+        rgba(124,58,237,.15)
+    );
+
+
+    transition:.5s;
+
+
+}
+
+
+
+/* Small glow circle */
+
+.stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+
+    width:70px;
+
+    height:70px;
+
+
+    right:25px;
+
+    bottom:25px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    rgba(196,181,253,.25);
+
+
+    filter:blur(5px);
+
+
+}
+
+
+
+/* Hover animation */
+
+.stat-card:hover{
+
+    transform:
+
+    translateY(-12px);
+
+
+    box-shadow:
+
+    0 35px 70px rgba(124,58,237,.22);
+
+}
+
+
+
+.stat-card:hover::before{
+
+    transform:
+
+    scale(1.25)
+    rotate(20deg);
+
+}
+
+
+
+/* Keep content above shapes */
+
+.stat-card > *{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+
+
+
+.stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ede9fe,
+        #ddd6fe
+    );
+
+
+    color:#7c3aed;
+
+
+    font-size:25px;
+
+
+    margin-bottom:18px;
+
+
+    box-shadow:
+
+    0 10px 25px rgba(124,58,237,.15);
+
+}
+
+
+
+.stat-card h2{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#25134f;
+
+
+}
+
+
+
+.stat-card span{
+
+    color:#756b88;
+
+    font-size:14px;
+
+}
+
+/* COMMON CARDS */
+
+
+.dashboard-card{
+
+    padding:28px;
+
+    border-radius:28px;
+
+
+    background:
+
+    rgba(255,255,255,.75);
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.5);
+
+
+    box-shadow:
+
+    0 20px 45px rgba(0,0,0,.07);
+
+
+    animation:
+
+    fadeUp .8s ease;
+
+}
+
+
+
+.card-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#25134f;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+/* TABLE */
+
+
+.crm-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+.crm-table th{
+
+    text-align:left;
+
+    padding:15px;
+
+    color:#756b88;
+
+    font-size:13px;
+
+}
+
+
+
+.crm-table td{
+
+    padding:18px 15px;
+
+    border-bottom:
+
+    1px solid rgba(0,0,0,.05);
+
+}
+
+
+
+.crm-table tr{
+
+    transition:.3s;
+
+}
+
+
+
+.crm-table tr:hover{
+
+    background:
+
+    rgba(124,58,237,.05);
+
+}
+
+
+
+
+
+/* BADGES */
+
+
+.badge{
+
+    padding:7px 14px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+
+
+.new{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+
+
+.contacted{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+
+
+.converted{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+
+
+
+/* CHART */
+
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(
+        auto-fit,
+        minmax(300px,1fr)
+    );
+
+    gap:25px;
+
+}
+
+
+
+.chart-box{
+
+    height:320px;
+
+}
+
+
+
+
+
+/* ANIMATION */
+
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:768px){
+
+    .hero h1{
+
+        font-size:26px;
+
+    }
+
+
+    .dashboard-card{
+
+        padding:20px;
+
+    }
+
+}
+
+
+
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div>
+
+            <h1>
+    Welcome back, {{ request.user.first_name|default:request.user.username }}
+</h1>
+
+            <p>
+                Manage your leads, track progress and grow your business.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <a href="{% url 'add_lead' %}" class="add-btn">
+                + Add New Lead
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <h2>
+                {{ total_leads }}
+            </h2>
+
+            <span>
+                Total Leads
+            </span>
+
+        </div>
+
+
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🆕
+            </div>
+
+            <h2>
+                {{ new_leads }}
+            </h2>
+
+            <span>
+                New Leads
+            </span>
+
+        </div>
+
+
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📞
+            </div>
+
+            <h2>
+                {{ contacted_leads }}
+            </h2>
+
+            <span>
+                Contacted Leads
+            </span>
+
+        </div>
+
+
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <h2>
+                {{ converted_leads }}
+            </h2>
+
+            <span>
+                Converted Leads
+            </span>
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- RECENT LEADS -->
+
+
+    <section class="dashboard-card">
+
+
+        <div class="card-title">
+            Recent Leads
+        </div>
+
+
+
+        <div style="overflow-x:auto;">
+
+
+        <table class="crm-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Company</th>
+
+                    <th>Status</th>
+
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+
+
+            {% for lead in recent_leads %}
+
+
+                <tr>
+
+
+                    <td>
+                        {{ lead.name }}
+                    </td>
+
+
+                    <td>
+                        {{ lead.email }}
+                    </td>
+
+
+                    <td>
+                        {{ lead.company|default:"-" }}
+                    </td>
+
+
+
+                    <td>
+
+
+                        {% if lead.status == "new" %}
+
+                            <span class="badge new">
+                                New
+                            </span>
+
+
+                        {% elif lead.status == "contacted" %}
+
+                            <span class="badge contacted">
+                                Contacted
+                            </span>
+
+
+                        {% else %}
+
+                            <span class="badge converted">
+                                Converted
+                            </span>
+
+
+                        {% endif %}
+
+
+                    </td>
+
+
+
+                    <td>
+                        {{ lead.created_at|date:"d M Y" }}
+                    </td>
+
+
+
+                </tr>
+
+
+
+            {% empty %}
+
+
+                <tr>
+
+                    <td colspan="5">
+
+                        No leads available
+
+                    </td>
+
+                </tr>
+
+
+            {% endfor %}
+
+
+
+            </tbody>
+
+
+
+        </table>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+    <!-- CHART SECTION -->
+
+
+    <section class="chart-grid">
+
+
+        <div class="dashboard-card chart-box">
+
+
+            <div class="card-title">
+
+                Lead Status Overview
+
+            </div>
+
+
+            <canvas id="statusChart"></canvas>
+
+
+        </div>
+
+
+
+
+
+        <div class="dashboard-card chart-box">
+
+
+            <div class="card-title">
+
+                Lead Sources
+
+            </div>
+
+
+            <canvas id="sourceChart"></canvas>
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+</div>
+
+
+
+{% endblock %}
+{% block scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+/* ===============================
+   STATUS CHART
+================================= */
+
+const statusCanvas = document.getElementById("statusChart");
+
+if (statusCanvas) {
+
+    new Chart(statusCanvas, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: [
+                "New",
+                "Contacted",
+                "Converted"
+            ],
+
+            datasets: [{
+
+                data: [
+                    {{ new_leads|default:0 }},
+                    {{ contacted_leads|default:0 }},
+                    {{ converted_leads|default:0 }}
+                ],
+
+                backgroundColor: [
+                    "#7C3AED",
+                    "#A855F7",
+                    "#C4B5FD"
+                ],
+
+                borderColor: "#FFFFFF",
+
+                borderWidth: 3,
+
+                hoverOffset: 8
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "65%",
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom",
+
+                    labels: {
+
+                        padding: 18,
+
+                        usePointStyle: true,
+
+                        font: {
+
+                            size: 13,
+
+                            weight: "600"
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* ===============================
+   SOURCE CHART
+================================= */
+
+const sourceCanvas = document.getElementById("sourceChart");
+
+if (sourceCanvas) {
+
+    new Chart(sourceCanvas, {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+                {% for source in source_stats %}
+                    "{{ source.source|title }}",
+                {% endfor %}
+            ],
+
+            datasets: [{
+
+                label: "Leads",
+
+                data: [
+                    {% for source in source_stats %}
+                        {{ source.total }},
+                    {% endfor %}
+                ],
+
+                backgroundColor: "#7C3AED",
+
+                hoverBackgroundColor: "#A855F7",
+
+                borderRadius: 10,
+
+                borderSkipped: false
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            scales: {
+
+                x: {
+
+                    grid: {
+
+                        display: false
+
+                    },
+
+                    ticks: {
+
+                        color: "#756B88",
+
+                        font: {
+
+                            size: 12,
+
+                            weight: "600"
+
+                        }
+
+                    }
+
+                },
+
+                y: {
+
+                    beginAtZero: true,
+
+                    ticks: {
+
+                        precision: 0,
+
+                        color: "#756B88"
+
+                    },
+
+                    grid: {
+
+                        color: "rgba(124,58,237,0.08)"
+
+                    }
+
+                }
+
+            },
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+{% endblock %}

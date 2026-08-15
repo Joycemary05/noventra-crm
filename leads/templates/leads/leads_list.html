@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Noventra | Leads</title>
+
+
+<style>
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter", Arial, sans-serif;
+
+}
+
+
+body{
+
+    background:#f7f5fb;
+
+    color:#2d2d35;
+
+}
+
+
+
+/* NAVBAR */
+
+
+.navbar{
+
+    background:white;
+
+    height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 45px;
+
+    border-bottom:1px solid #eee;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#6b4c8a;
+
+}
+
+
+
+.nav-links{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#555;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+
+.nav-links a:hover{
+
+    background:#f0eafa;
+
+    color:#6b4c8a;
+
+    transform:translateY(-2px);
+
+}
+
+
+
+.active-link{
+
+    background:#f0eafa;
+
+    color:#6b4c8a !important;
+
+}
+
+
+
+.logout{
+
+    color:#d9534f !important;
+
+}
+
+
+
+/* MAIN */
+
+
+.container{
+
+    padding:40px 50px;
+
+}
+
+
+
+/* HEADER */
+
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.header h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+
+
+.header p{
+
+    margin-top:10px;
+
+    color:#777;
+
+}
+
+
+
+/* BUTTONS */
+
+
+.header-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
+
+.header-buttons a{
+
+    text-decoration:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+
+.add-btn{
+
+    background:#6b4c8a;
+
+    color:white;
+
+}
+
+
+
+.add-btn:hover{
+
+    background:#563b70;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+.import-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+
+.import-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+.export-btn{
+
+    background:#16a34a;
+
+    color:white;
+
+}
+
+
+
+.export-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* FILTER BOX */
+
+
+.filters{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+
+    margin-bottom:30px;
+
+}
+
+
+
+.search-form{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
+
+.search-input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+
+.search-input:focus{
+
+    border-color:#6b4c8a;
+
+}
+
+
+
+.search-btn{
+
+    background:#6b4c8a;
+
+    color:white;
+
+    border:none;
+
+    padding:0 25px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+
+
+.filter-title{
+
+    margin-top:25px;
+
+    margin-bottom:12px;
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+
+.filter-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+.filter-btn{
+
+    padding:9px 18px;
+
+    border-radius:20px;
+
+    background:#eee;
+
+    color:#555;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+
+.filter-btn:hover{
+
+    background:#f0eafa;
+
+    color:#6b4c8a;
+
+}
+
+
+
+.active{
+
+    background:#6b4c8a;
+
+    color:white;
+
+}
+
+
+
+/* TABLE */
+
+
+.table-container{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+
+    overflow-x:auto;
+
+}
+
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+th{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+
+th,td{
+
+    padding:16px;
+
+    text-align:left;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+
+tbody tr{
+
+    transition:.3s;
+
+}
+
+
+
+tbody tr:hover{
+
+    background:#faf7ff;
+
+}
+
+
+
+/* STATUS */
+
+
+.status{
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+
+.new{
+
+    background:#eee8f5;
+
+    color:#6b4c8a;
+
+}
+
+
+
+.contacted{
+
+    background:#e8f0f5;
+
+    color:#41677d;
+
+}
+
+
+
+.converted{
+
+    background:#e8f5ed;
+
+    color:#3d7651;
+
+}
+
+
+
+.view-link{
+
+    color:#6b4c8a;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+
+.view-link:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+.empty{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#777;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+
+<div class="logo">
+
+    Noventra
+
+</div>
+
+
+
+<div class="nav-links">
+
+
+<a href="{% url 'dashboard' %}">
+
+    Dashboard
+
+</a>
+
+
+
+<a href="{% url 'leads_list' %}" class="active-link">
+
+    Leads
+
+</a>
+
+
+
+<a href="{% url 'add_lead' %}">
+
+    Add Lead
+
+</a>
+
+
+
+<a href="{% url 'logout' %}" class="logout">
+
+    Logout
+
+</a>
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+<main class="container">
+
+
+
+
+
+<div class="header">
+
+
+
+<div>
+
+
+<h1>
+
+    All Leads
+
+</h1>
+
+
+<p>
+
+    Manage and track all your customer relationships.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+<div class="header-buttons">
+
+
+<a href="{% url 'add_lead' %}" class="add-btn">
+
++ Add Lead
+
+</a>
+
+
+
+<a href="{% url 'import_excel' %}" class="import-btn">
+
+Import Excel
+
+</a>
+
+
+
+<a href="{% url 'export_excel' %}" class="export-btn">
+
+Export Excel
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<section class="filters">
+
+
+
+<form method="GET" class="search-form">
+
+
+<input
+
+type="text"
+
+name="search"
+
+class="search-input"
+
+placeholder="Search by name, email or company..."
+
+value="{{ search }}"
+
+>
+
+
+
+<button class="search-btn">
+
+Search
+
+</button>
+
+
+
+</form>
+
+
+
+
+
+
+
+<div class="filter-title">
+
+Filter by Status
+
+</div>
+
+
+
+
+
+<div class="filter-buttons">
+
+
+
+<a href="{% url 'leads_list' %}"
+
+class="filter-btn {% if not status %}active{% endif %}">
+
+All
+
+</a>
+
+
+
+
+
+<a href="?status=new"
+
+class="filter-btn {% if status == 'new' %}active{% endif %}">
+
+New
+
+</a>
+
+
+
+
+
+<a href="?status=contacted"
+
+class="filter-btn {% if status == 'contacted' %}active{% endif %}">
+
+Contacted
+
+</a>
+
+
+
+
+
+<a href="?status=converted"
+
+class="filter-btn {% if status == 'converted' %}active{% endif %}">
+
+Converted
+
+</a>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="table-container">
+
+
+
+
+
+<table>
+
+
+
+<thead>
+
+
+<tr>
+
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Company</th>
+
+<th>Phone</th>
+
+<th>Source</th>
+
+<th>Status</th>
+
+<th>Assigned To</th>
+
+<th>Action</th>
+
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+
+
+<tbody>
+
+
+
+
+
+{% for lead in leads %}
+
+
+
+
+
+<tr>
+
+
+
+<td>
+
+{{ lead.name }}
+
+</td>
+
+
+
+
+
+<td>
+
+{{ lead.email }}
+
+</td>
+
+
+
+
+
+<td>
+
+{{ lead.company|default:"-" }}
+
+</td>
+
+
+
+
+
+<td>
+
+{{ lead.phone|default:"-" }}
+
+</td>
+
+
+
+
+
+<td>
+
+{{ lead.get_source_display }}
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<span class="status {{ lead.status }}">
+
+
+{{ lead.get_status_display }}
+
+
+</span>
+
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+{% if lead.assigned_to %}
+
+
+{{ lead.assigned_to.username }}
+
+
+
+{% else %}
+
+
+
+Not Assigned
+
+
+
+{% endif %}
+
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+
+<a
+
+href="{% url 'lead_detail' lead.id %}"
+
+class="view-link">
+
+
+View Details
+
+
+</a>
+
+
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+
+
+{% empty %}
+
+
+
+
+
+<tr>
+
+
+<td colspan="8" class="empty">
+
+
+No leads available.
+
+
+</td>
+
+
+</tr>
+
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+
+</body>
+
+
+</html>
